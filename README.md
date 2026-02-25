@@ -8,15 +8,15 @@ A premium, compact, and professional monitoring dashboard for your infrastructur
 
 ## ✨ Features
 
-- **Premium Compact UI**: Designed to fit dozens of monitors on a single screen without scrolling. Refined typography and tight spacing for power users.
-- **Professional Palette**: Muted, cohesive color tones that provide distinct visual identity for each block without being overly "shiny."
-- **Real-time Status Feedback**: 
-  - Individual **"Checking..."** indicators for each block during refreshes.
-  - Global system health percentage in the header.
-  - Visual health timeline (dots) in the header for a quick overview.
-- **Privacy-First Config**: Monitoring targets are stored in a local `public/config.json`. This file is git-ignored to keep your internal URLs private.
-- **Consolidated Layout**: All status information, including live update indicators, is unified in a minimalist top-level header.
-- **Responsive & Lightweight**: Built with Vanilla CSS for maximum performance and fluid adaptation across devices.
+- **Premium Compact UI**: Designed to fit dozens of monitors on a single screen without scrolling. Refined typography and tight spacing.
+- **Custom Icon System**: Support for per-system icons (Server, DB, Cloud, etc.) with precise optical alignment and generous spacing.
+- **Professional Palette**: Muted, cohesive color tones providing distinct identity for each block without being overly "shiny."
+- **Branded Experience**: Includes a custom **Transparent Pulse Favicon** for a professional browser presence.
+- **Stable Real-time Feedback**: 
+  - **Zero Layout Shifts**: Individual "Checking..." indicators use reserved space to prevent UI jumping during refreshes.
+  - **Global Health UI**: Header includes a visual health timeline (dots) and overall system health percentage.
+- **Privacy-First Config**: Monitoring targets are stored in a local `public/config.json`. This file is git-ignored for privacy.
+- **Responsive & Lightweight**: Built with Vanilla CSS for maximum performance and fluid adaptation.
 
 ## 🚀 Getting Started
 
@@ -36,7 +36,7 @@ A premium, compact, and professional monitoring dashboard for your infrastructur
 
 #### 🔧 Changing the Port
 
-- **Development**: Run `npm run dev -- --port 5173` (replacing `5173` with your desired port).
+- **Development**: Run `npm run dev -- --port 5173 --host` (replacing `5173` with your desired port).
 - **Production**: If using `serve`, run `npx serve -s dist -l 5173`.
 
 ### Configuration
@@ -47,19 +47,25 @@ Modify your monitoring list in `public/config.json`:
 [
   {
     "name": "Production API",
-    "url": "https://api.example.com/v1/health",
+    "url": "https://api.example.com",
+    "icon": "cloud",
     "description": "Main customer-facing gateway"
   },
   {
-    "name": "Internal DB Cluster",
-    "url": "http://10.0.0.15:8080/status",
-    "description": "Read-only replica for analytics"
+    "name": "Local Synology",
+    "url": "http://192.168.1.100:5000",
+    "icon": "server",
+    "description": "Network Attached Storage"
   }
 ]
 ```
 
-> [!IMPORTANT]
-> Since IDs are no longer required, the dashboard displays blocks in the order they appear in your JSON.
+#### 📋 Supported Icons
+Use these keys in the `icon` field (case-insensitive):
+`server`, `database`, `globe`, `cpu`, `shield`, `harddrive`, `link`, `terminal`, `cloud`, `zap`, `activity`, `monitor`.
+
+> [!TIP]
+> If the `icon` field is missing or invalid, the system defaults to the **Activity** pulse icon.
 
 ## 🔧 Deployment & Network
 
@@ -70,13 +76,12 @@ npx serve -s dist
 ```
 
 ### Network Considerations
-- **Custom Ports**: Full URL monitoring supported (e.g., `https://host:8443`).
-- **Private Networks**: Works seamlessly over Tailscale, WireGuard, or local LAN as long as the machine hosting the dashboard has network access.
-- **no-cors Mode**: Uses standard browser fetching to "ping" services. Note that this detects basic reachability (UP/DOWN) and latency, but cannot read detailed HTTP error codes due to CORS security.
+- **reachability-based Mode**: Uses browser-native fetching to "ping" services. This detects basic reachability (UP/DOWN) and latency. 
+- **CORS Sensitivity**: Due to browser security, detailed HTTP error codes are often hidden; the dashboard relies on connection success/failure for status.
 
 ## 🛠 Tech Stack
 
 - **React 18** / **TypeScript**
-- **Framer Motion** (Smooth transitions & checking animations)
-- **Lucide React** (Minimalist iconography)
+- **Framer Motion** (Smooth transitions & stabilized checking animations)
+- **Lucide React** (Minimalist photography)
 - **Vanilla CSS** (Custom high-density design system)
