@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Monitor, RefreshCcw, Wifi, WifiOff, Clock, ArrowUpRight } from 'lucide-react'
+import { Monitor, RefreshCcw, Wifi, WifiOff, Clock, ArrowUpRight, Activity, Server, Database, Globe, Cpu, Shield, HardDrive, Link2, Terminal, Cloud, Zap } from 'lucide-react'
 
 interface SystemStatus {
     name: string;
@@ -10,6 +10,22 @@ interface SystemStatus {
     latency: number;
     lastChecked: string;
     isChecking?: boolean;
+    icon?: string;
+}
+
+const ICON_MAP: Record<string, any> = {
+    server: Server,
+    database: Database,
+    globe: Globe,
+    cpu: Cpu,
+    shield: Shield,
+    harddrive: HardDrive,
+    link: Link2,
+    terminal: Terminal,
+    cloud: Cloud,
+    activity: Activity,
+    zap: Zap,
+    monitor: Monitor
 }
 
 const FANCY_COLORS = [
@@ -52,11 +68,14 @@ function App() {
 
         const start = performance.now()
         try {
+            // We use 'no-cors' to allow monitoring cross-origin sites.
+            // Note: status will be 0 (opaque) but failure to connect will throw.
             await fetch(system.url, { mode: 'no-cors' })
             const latency = Math.round(performance.now() - start)
+
             const updated = {
                 ...system,
-                status: latency > 1000 ? 'warning' : 'up',
+                status: 'up',
                 latency,
                 lastChecked: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                 isChecking: false
@@ -101,12 +120,17 @@ function App() {
         )
     }
 
+    const SystemIcon = ({ name, className }: { name?: string, className?: string }) => {
+        const Icon = (name && ICON_MAP[name.toLowerCase()]) || Activity
+        return <Icon className={className} size={18} />
+    }
+
     return (
         <div className="apple-container">
             <div className="header-meta">
                 <div className="flex items-center gap-1.5">
                     <Monitor size={12} className="opacity-60" />
-                    <span>&nbsp;&nbsp;System Dashboard</span>
+                    <span>&nbsp; &nbsp;System Dashboard</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <div className="flex items-center gap-1.5">
@@ -168,10 +192,11 @@ function App() {
                                         href={system.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block-name group-hover:opacity-70 transition-opacity flex items-center gap-1.5"
+                                        className="block-name group-hover:opacity-70 transition-opacity flex items-center"
                                     >
-                                        {system.name}
-                                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-all" />
+                                        <SystemIcon name={system.icon} className="flex-shrink-0 mr-8 transform translate-y-[-0.5px]" />
+                                        <span className="truncate">&nbsp;{system.name}</span>
+                                        <ArrowUpRight size={14} className="flex-shrink-0 ml-1.5 opacity-0 group-hover:opacity-100 transition-all" />
                                     </a>
                                     <p className="block-url">{new URL(system.url).hostname}</p>
                                 </div>
@@ -191,13 +216,13 @@ function App() {
                             )}
 
                             <div className="latency-display">
-                                <div>
-                                    <span className="latency-value">{system.status !== 'down' ? system.latency : '--'}</span>
-                                    <span className="latency-unit">ms</span>
+                                <div className="flex items-center gap-3">
+                                    <div className="flex items-baseline gap-1">
+                                        <span className="latency-value">{system.status !== 'down' ? system.latency : '--'}</span>
+                                        <span className="latency-unit">ms</span>
+                                    </div>
+                                    <span className={`checking-indicator ${system.isChecking ? 'visible' : ''}`}>Checking...</span>
                                 </div>
-                                {system.isChecking && (
-                                    <span className="checking-indicator">Checking...</span>
-                                )}
                             </div>
 
                             <div className="last-checked">
