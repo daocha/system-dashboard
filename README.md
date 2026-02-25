@@ -34,6 +34,11 @@ A premium, compact, and professional monitoring dashboard for your infrastructur
 
 3. Open [http://localhost:5173](http://localhost:5173).
 
+#### 🔧 Changing the Port
+
+- **Development**: Run `npm run dev -- --port 5173` (replacing `5173` with your desired port).
+- **Production**: If using `serve`, run `npx serve -s dist -l 5173`.
+
 ### Configuration
 
 Modify your monitoring list in `public/config.json`:
