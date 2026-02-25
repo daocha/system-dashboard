@@ -5,6 +5,7 @@ import { Monitor, RefreshCcw, Wifi, WifiOff, Clock, ArrowUpRight, Activity, Serv
 interface SystemStatus {
     name: string;
     url: string;
+    link?: string;
     description?: string;
     status: 'up' | 'down' | 'warning';
     latency: number;
@@ -189,7 +190,7 @@ function App() {
                             <div className="block-header">
                                 <div className="max-w-[80%]">
                                     <a
-                                        href={system.url}
+                                        href={system.link || system.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="block-name group-hover:opacity-70 transition-opacity flex items-center"
@@ -198,7 +199,7 @@ function App() {
                                         <span className="truncate">&nbsp;{system.name}</span>
                                         <ArrowUpRight size={14} className="flex-shrink-0 ml-1.5 opacity-0 group-hover:opacity-100 transition-all" />
                                     </a>
-                                    <p className="block-url">{new URL(system.url).hostname}</p>
+                                    <p className="block-url">{new URL(system.link || system.url).hostname}</p>
                                 </div>
 
                                 <div className="flex flex-col items-end">

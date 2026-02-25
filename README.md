@@ -54,6 +54,7 @@ Modify your monitoring list in `public/config.json`:
   {
     "name": "Local Synology",
     "url": "http://192.168.1.100:5000",
+    "link": "http://synology.local",
     "icon": "server",
     "description": "Network Attached Storage"
   }
@@ -63,6 +64,9 @@ Modify your monitoring list in `public/config.json`:
 #### 📋 Supported Icons
 Use these keys in the `icon` field (case-insensitive):
 `server`, `database`, `globe`, `cpu`, `shield`, `harddrive`, `link`, `terminal`, `cloud`, `zap`, `activity`, `monitor`.
+
+> [!TIP]
+> **Optional Redirects**: Use the `link` field to specify an alternative URL for the title hyperlink (e.g., a friendly hostname) while keeping `url` for the actual health check. The dashboard will automatically display the hostname from the `link` if provided.
 
 > [!TIP]
 > If the `icon` field is missing or invalid, the system defaults to the **Activity** pulse icon.
