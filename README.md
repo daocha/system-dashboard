@@ -1,4 +1,4 @@
-#  System Status Dashboard
+# System Status Dashboard
 
 A premium, compact, and professional monitoring dashboard for your infrastructure. Designed with an emphasis on high density, muted Apple-inspired aesthetics, and real-time feedback.
 
@@ -17,6 +17,10 @@ A premium, compact, and professional monitoring dashboard for your infrastructur
   - **Global Health UI**: Header includes a visual health timeline (dots) and overall system health percentage.
 - **Privacy-First Config**: Monitoring targets are stored in a local `public/config.json`. This file is git-ignored for privacy.
 - **Responsive & Lightweight**: Built with Vanilla CSS for maximum performance and fluid adaptation.
+
+## Preview:
+![Screenshot 2026-02-26 at 11 20 53 PM](https://github.com/user-attachments/assets/47f14637-50f9-4c9c-8846-2fbb8da7b894)
+
 
 ## 🚀 Getting Started
 
