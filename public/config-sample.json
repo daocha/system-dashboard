@@ -1,0 +1,56 @@
+[
+    {
+        "name": "ChatGPT",
+        "url": "https://chatgpt.com",
+        "icon": "zap",
+        "description": "OpenAI's conversational AI model"
+    },
+    {
+        "name": "Claude",
+        "url": "https://claude.ai",
+        "icon": "shield",
+        "description": "Anthropic's helpful and harmless AI"
+    },
+    {
+        "name": "Gemini",
+        "url": "https://gemini.google.com",
+        "icon": "cloud",
+        "description": "Google's most capable AI model"
+    },
+    {
+        "name": "Perplexity",
+        "url": "https://perplexity.ai",
+        "icon": "globe",
+        "description": "AI-powered search engine"
+    },
+    {
+        "name": "Mistral AI",
+        "url": "https://mistral.ai",
+        "icon": "cpu",
+        "description": "European open-weight AI models"
+    },
+    {
+        "name": "Midjourney",
+        "url": "https://midjourney.com",
+        "icon": "activity",
+        "description": "Generative AI for high-quality images"
+    },
+    {
+        "name": "Groq",
+        "url": "https://groq.com",
+        "icon": "zap",
+        "description": "LPU Inference Engine for ultra-fast AI"
+    },
+    {
+        "name": "Hugging Face",
+        "url": "https://huggingface.co",
+        "icon": "link",
+        "description": "The home of open-source machine learning"
+    },
+    {
+        "name": "DeepSeek",
+        "url": "https://deepseek.com",
+        "icon": "terminal",
+        "description": "High-performance Chinese open AI models"
+    }
+]
