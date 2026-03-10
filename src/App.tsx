@@ -68,10 +68,15 @@ function App() {
         setSystems(prev => prev.map(s => s.url === system.url ? { ...s, isChecking: true } : s))
 
         const start = performance.now()
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 5000) // 5s timeout
         try {
             // We use 'no-cors' to allow monitoring cross-origin sites.
             // Note: status will be 0 (opaque) but failure to connect will throw.
-            await fetch(system.url, { mode: 'no-cors' })
+            await fetch(system.url, { mode: 'no-cors', signal: controller.signal })
+
+            clearTimeout(timeoutId)
+
             const latency = Math.round(performance.now() - start)
 
             const updated = {
@@ -84,11 +89,14 @@ function App() {
             setSystems(prev => prev.map(s => s.url === system.url ? updated : s))
             return updated
         } catch (error) {
+            clearTimeout(timeoutId)
+            const isTimeout = error instanceof DOMException && error.name === 'AbortError'
+
             const updated = {
                 ...system,
                 status: 'down',
                 latency: 0,
-                lastChecked: 'Error',
+                lastChecked: isTimeout ? 'Timeout' : 'Error',
                 isChecking: false
             } as SystemStatus
             setSystems(prev => prev.map(s => s.url === system.url ? updated : s))
