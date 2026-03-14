@@ -47,7 +47,7 @@ function App() {
 
     const fetchConfig = async () => {
         try {
-            const response = await fetch('/config.json')
+            const response = await fetch('./config.json')
             const data = await response.json()
             setSystems(data.map((item: any) => ({
                 ...item,
@@ -73,8 +73,8 @@ function App() {
         try {
             // We use 'no-cors' to allow monitoring cross-origin sites.
             // Note: status will be 0 (opaque) but failure to connect will throw.
-            await fetch(system.url, { mode: 'no-cors', signal: controller.signal })
-
+            await fetch(system.url, { method: "HEAD", mode: 'no-cors', signal: controller.signal })
+	
             clearTimeout(timeoutId)
 
             const latency = Math.round(performance.now() - start)
@@ -116,7 +116,7 @@ function App() {
     useEffect(() => {
         if (systems.length > 0) {
             refreshAll()
-            const interval = setInterval(refreshAll, 15000)
+            const interval = setInterval(refreshAll, 30000)
             return () => clearInterval(interval)
         }
     }, [loading])
