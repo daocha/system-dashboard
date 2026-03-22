@@ -93,3 +93,10 @@ npx serve -s dist
 - **Framer Motion** (Smooth transitions & stabilized checking animations)
 - **Lucide React** (Minimalist photography)
 - **Vanilla CSS** (Custom high-density design system)
+
+---
+
+## License
+
+This project is released under the MIT License. Add a `LICENSE` file containing the MIT text when publishing or redistributing it.
+
