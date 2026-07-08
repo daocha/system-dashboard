@@ -38,6 +38,19 @@ A premium, compact, and professional monitoring dashboard for your infrastructur
 
 3. Open [http://localhost:5173](http://localhost:5173).
 
+### Docker
+
+1. Build and run with Docker Compose:
+   ```bash
+   docker compose up --build
+   ```
+2. Open [http://localhost:5173](http://localhost:5173).
+
+To stop:
+```bash
+docker compose down
+```
+
 #### 🔧 Changing the Port
 
 - **Development**: Run `npm run dev -- --port 5173 --host` (replacing `5173` with your desired port).
@@ -80,7 +93,7 @@ Use these keys in the `icon` field (case-insensitive):
 ### Production Build
 ```bash
 npm run build
-npx serve -s dist
+npm run preview -- --host 0.0.0.0 --port 5173
 ```
 
 ### Network Considerations
@@ -99,4 +112,3 @@ npx serve -s dist
 ## License
 
 This project is released under the MIT License. Add a `LICENSE` file containing the MIT text when publishing or redistributing it.
-
