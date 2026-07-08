@@ -1,7 +1,8 @@
 services:
-  system-dashboard:
+  dashboard:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: system-dashboard
     ports:
       - "5173:5173"
