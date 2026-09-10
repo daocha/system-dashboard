@@ -186,6 +186,12 @@ body {
     margin-bottom: 12px;
 }
 
+.block-header>div:first-child {
+    min-width: 0;
+    flex: 1;
+    margin-right: 8px;
+}
+
 .block-name {
     font-size: 18px;
     font-weight: 700;
@@ -196,6 +202,14 @@ body {
     line-height: normal;
     display: inline-flex;
     align-items: center;
+    max-width: 100%;
+}
+
+.block-name span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .block-url {
@@ -337,5 +351,60 @@ body {
     .global-status,
     .header-meta {
         display: none;
+    }
+
+    .apple-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .apple-block {
+        padding: 14px;
+        min-height: 150px;
+        border-radius: 14px;
+    }
+
+    .block-header {
+        margin-bottom: 8px;
+    }
+
+    .block-name {
+        font-size: 14px;
+    }
+
+    .block-url {
+        font-size: 10px;
+    }
+
+    .status-pill {
+        padding: 3px 7px;
+        font-size: 8px;
+    }
+
+    .description-text {
+        font-size: 11px;
+        margin-top: 8px;
+    }
+
+    .latency-display {
+        padding-top: 10px;
+        min-height: 36px;
+    }
+
+    .latency-value {
+        font-size: 22px;
+    }
+
+    .latency-unit {
+        font-size: 11px;
+    }
+
+    .checking-indicator {
+        font-size: 9px;
+    }
+
+    .last-checked {
+        font-size: 9px;
+        margin-top: 4px;
     }
 }
