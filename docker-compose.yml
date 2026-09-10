@@ -6,3 +6,6 @@ services:
     container_name: system-dashboard
     ports:
       - "5173:5173"
+    volumes:
+      - ./public/config.json:/app/dist/config.json:ro
+    restart: unless-stopped
