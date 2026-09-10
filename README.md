@@ -16,7 +16,8 @@ A premium, compact, and professional monitoring dashboard for your infrastructur
   - **Zero Layout Shifts**: Individual "Checking..." indicators use reserved space to prevent UI jumping during refreshes.
   - **Global Health UI**: Header includes a visual health timeline (dots) and overall system health percentage.
 - **Privacy-First Config**: Monitoring targets are stored in a local `public/config.json`. This file is git-ignored for privacy.
-- **Responsive & Lightweight**: Built with Vanilla CSS for maximum performance and fluid adaptation.
+- **Responsive & Lightweight**: Built with Vanilla CSS for maximum performance and fluid adaptation. Shows a two-column grid on phone-sized screens.
+- **Installable Web App (PWA)**: Add it to your phone's or desktop's home screen for a native, standalone app experience.
 
 ## Preview:
 ![Screenshot 2026-02-26 at 11 20 53 PM](https://github.com/user-attachments/assets/47f14637-50f9-4c9c-8846-2fbb8da7b894)
@@ -99,6 +100,13 @@ npm run preview -- --host 0.0.0.0 --port 5173
 ### Network Considerations
 - **reachability-based Mode**: Uses browser-native fetching to "ping" services. This detects basic reachability (UP/DOWN) and latency. 
 - **CORS Sensitivity**: Due to browser security, detailed HTTP error codes are often hidden; the dashboard relies on connection success/failure for status.
+
+### 📲 Installing as an App
+This dashboard is a fully installable Progressive Web App (PWA):
+- **iOS (Safari)**: Open the site, tap Share → **Add to Home Screen**.
+- **Android/Desktop (Chrome/Edge)**: Open the site and tap the **Install** icon in the address bar, or use the browser menu → **Install App**.
+
+Once installed, it launches standalone (no browser chrome) with its own icon. PWA support requires the app be served over **HTTPS** (or `localhost`). Note: `config.json` is always fetched live and is never cached by the service worker, so your monitoring list stays up to date.
 
 ## 🛠 Tech Stack
 
